@@ -1,0 +1,22 @@
+{
+  "name": "padres_clementinos",
+  "version": "1.0.0",
+  "description": "Website estático para a congregação do Padres Clementinos",
+  "main": "index.js",
+  "scripts": {
+    "start": "ts-node-dev src/server.ts"
+  },
+  "repository": "git@github.com:rnasc/padres_clementinos.git",
+  "author": "Rogerio Nascimento <rogerio@rogerionascimento.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@types/node": "^14.6.2",
+    "express": "^4.17.1",
+    "ts-node": "^9.0.0"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.8",
+    "ts-node-dev": "^1.0.0-pre.62",
+    "typescript": "^4.0.2"
+  }
+}
