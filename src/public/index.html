@@ -3,13 +3,13 @@
 
   <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=1000, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="stylesheet" type="text/css" href="stylesheet.css" />
     <link
       href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400;700&family=Oswald:wght@200;400;700&family=Roboto&display=swap"
       rel="stylesheet">
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <title>Congrega&ccedil;ão dos Padres Clementinos</title>
   </head>
 
@@ -21,12 +21,34 @@
       </div>
       <nav>
         <ul>
-          <li>A Congrega&ccedil;ão</li>
-          <li>Secretaria</li>
-          <li>Galeria de Fotos</li>
-          <li>Contato</li>
+          <li>
+            <a href="?page=home">
+              Início
+            </a>
+          </li>
+          <li>
+            <a href="?page=about">
+              A Congrega&ccedil;ão
+            </a>
+          </li>
+          <li>
+            <a href="?page=secretary">
+              Secretaria
+            </a>
+          </li>
+          <li>
+            <a href="?page=photos">
+              Galeria de Fotos
+            </a>
+          </li>
+          <li>
+            <a href="?page=contact">
+              Contato
+            </a>
+          </li>
         </ul>
-        <div class="close">
+        <div class="close" onclick="showMenu();">
+          <span class='close-image'></span>
           <!-- <img src="./assets/images/hamburger.svg" alt=""> -->
         </div>
       </nav>
@@ -36,52 +58,7 @@
 
     <section>
 
-      <legend>Sobre nós</legend>
-      <article>
-        <div class="img right">
-          <img src="/assets/images/church-internal.jpg" alt="" class='right'>
-        </div>
-        <p>
-          A congregação dos Padres Clementinos, fundada em 1.979, pelo Monsenhor Fernandes Alves de Toledo,
-          ex-integrante da Congregação dos Padres Palotinos, com séde em Jacarezinho-Paraná, é composta por
-          sacerdotes missionários que seguem o rito católico dentro dos princípios ecumênicos preconizados
-          pelo Bem Aventurado Papa João XXIII e se preocupa em levar aos fiéis do Brasil uma imagem renovada
-          de evangelização e sacramentos, buscando acompanhar a evolução socio-cultural dos povos e entender
-          suas dificuldades temporais.
-        </p>
-        <p>
-          Com séde provincial em Osasco, Estado de São Paulo, mantém diversas comunidades paroquiais e religiosas
-          espalhadas por diversos recantos do Brasil.
-        </p>
-        <p>
-          Entre suas inovações dogmáticas está o entendimento de que sendo Deus onisciente e unipresente, se
-          encontra em toda parte, e não somente nos templos dedicados aos cultos e à oração, dai porque permite
-          a seus sacerdotes a realização de SACRAMENTOS FORA DOS TEMPLOS, desde que em locais decentes, pois
-          a verdadeira Igreja é a reunião dos fiéis em nome de Jesus Cristo.
-        </p>
-        <p>
-          No mesmo pensamento permite a ministração de sacramentos às crianças cujos pais e ou padrinhos não se
-          casaram no religioso por entender que os pequenos não podem ser culpados por possíveis erros de seus
-          pais e por isso se tornarem religiosamente marginalizados.
-        </p>
-        <p>
-          Permite ainda, a ministração de sacramentos sem curso prévio, desde que a orientação seja fornecida no
-          ato, contribuindo assim para que pais e padrinhos que precisam ganhar o pão de cada dia, não venham ser
-          prejudicados com a perda de seu precioso tempo.
-        </p>
-        <p>
-          Assim, a Congregação dos Padres Clementinos, através de seus dedicados sacerdotes, vem atingindo seu nobre
-          propósito de reunir o povo de Deus, mantendo sua fé e dedicação à Jesus Cristo, à Santíssima Trindade e à
-          Igreja
-        </p>
 
-        <div class="signature">
-          <p>Dom Claudio de Deus,s.c.</p>
-          <p>Bispo Diocesano de Osasco</p>
-          <p>Superior Provincial da Congregação dos Padres Clementinos</p>
-        </div>
-
-      </article>
     </section>
 
     <footer>
@@ -89,5 +66,63 @@
     </footer>
 
   </body>
+
+  <script>
+    $(document).ready(
+      function () {
+        const page = (getUrlParameter('page') ? getUrlParameter('page') : 'home') + '.html';
+        $('section').load(page)
+        console.log(page);
+
+      }
+    )
+
+    let menuOpen = false;
+    function showMenu() {
+      if (menuOpen) {
+        menuOpen = false;
+        $('nav ul')
+          .css({
+            'font-size': '1rem'
+          })
+          .hide();
+        $('.logo').show();
+        $('nav').css({
+          'justify-content': 'flex-end',
+          'margin-top': 0
+        })
+      } else {
+        menuOpen = true
+        $('nav ul')
+          .css({
+            'font-size': '1.3rem'
+          })
+          .show();
+        $('.logo').hide();
+        $('nav').css({
+          'justify-content': 'space-between',
+          'margin-top': '1rem'
+        })
+      }
+
+
+    }
+
+    function getUrlParameter(sParam) {
+      var sPageURL = window.location.search.substring(1),
+        sURLVariables = sPageURL.split('&'),
+        sParameterName,
+        i;
+
+      for (i = 0; i < sURLVariables.length; i++) {
+        sParameterName = sURLVariables[i].split('=');
+
+        if (sParameterName[0] === sParam) {
+          return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
+        }
+      }
+    };
+
+  </script>
 
 </html>
